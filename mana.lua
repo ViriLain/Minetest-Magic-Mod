@@ -113,21 +113,43 @@ minetest.register_globalstep(function(dtime)
 		return
 	end
 
-	local regen = MANA_REGEN_RATE * timer
+	local elapsed = timer
 	timer = 0
 
 	for _, player in ipairs(minetest.get_connected_players()) do
 		local name = player:get_player_name()
 		local m = player_mana[name]
 		if m then
+			-- Calculate effective max mana (base + armor bonus)
+			local armor_bonus = 0
+			if magic.armor then
+				armor_bonus = magic.armor.get_max_mana_bonus(name)
+			end
+			m.max = MANA_MAX_DEFAULT + armor_bonus
+
+			-- Calculate effective regen (base + armor + potion buff)
+			local effective_regen = MANA_REGEN_RATE
+			if magic.armor then
+				effective_regen = effective_regen +
+					magic.armor.get_regen_bonus(name)
+			end
+			if magic.potions and magic.potions.has_regen_buff(name) then
+				effective_regen = effective_regen * 2
+			end
+
 			-- Regenerate
 			if m.current < m.max then
-				m.current = math.min(m.current + regen, m.max)
+				m.current = math.min(m.current + effective_regen * elapsed, m.max)
+			end
+			-- Clamp if max decreased (armor unequipped)
+			if m.current > m.max then
+				m.current = m.max
 			end
 
 			-- Update HUD bar
 			local ids = hud_ids[name]
 			if ids then
+				player:hud_change(ids.bg, "number", math.floor(2 * m.max))
 				player:hud_change(ids.bar, "number", math.floor(2 * m.current))
 				player:hud_change(ids.text, "text",
 					"Mana: " .. math.floor(m.current) .. "/" .. m.max)

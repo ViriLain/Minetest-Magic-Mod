@@ -27,11 +27,35 @@ Craft and wield elemental wands to cast spells:
   - **Thunderstrike** — 40% chance for bonus lightning damage
   - **Lifesteal** — heals you for 30% of damage dealt
 
+### Mana Potions
+Brew potions to manage your mana in battle:
+
+| Potion | Effect |
+|---|---|
+| Mana Potion | Restores 50 mana instantly |
+| Greater Mana Potion | Fully restores mana |
+| Mana Regen Potion | Doubles mana regen for 30 seconds |
+
+### Mana Armor
+Craft a set of mana-infused armor to boost your magical power:
+
+| Piece | Max Mana Bonus | Regen Bonus |
+|---|---|---|
+| Mana Helmet | +20 | +1/sec |
+| Mana Chestplate | +40 | +2/sec |
+| Mana Leggings | +25 | +1/sec |
+| Mana Boots | +15 | +1/sec |
+| **Full Set** | **+100** | **+5/sec** |
+
+Use (right-click) an armor piece while it's in your inventory to equip/unequip it.
+
 ### Crafting
 All items are craftable using materials from the default Minetest Game:
 - **Mana Crystals** — diamond + mese crystals
 - **Wands** — sticks + mana crystal + element-specific materials
 - **Enchanting Table** — obsidian + diamond + mana crystals
+- **Potions** — glass + mana crystals + various catalysts
+- **Armor** — steel ingots + mana crystals
 
 ## Installation
 

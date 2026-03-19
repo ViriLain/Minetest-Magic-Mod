@@ -11,6 +11,8 @@ magic = {}
 
 -- Load modules
 magic.mana = dofile(modpath .. "/mana.lua")
+dofile(modpath .. "/armor.lua")
+dofile(modpath .. "/potions.lua")
 dofile(modpath .. "/wands.lua")
 dofile(modpath .. "/enchanting.lua")
 dofile(modpath .. "/crafting.lua")

@@ -69,3 +69,79 @@ minetest.register_craft({
 		{"default:obsidian", "default:obsidian", "default:obsidian"},
 	},
 })
+
+----------------------------------------------------------------------
+-- Potions
+----------------------------------------------------------------------
+
+-- Mana Potion: mana crystal + glass bottle equivalent
+minetest.register_craft({
+	output = "magic:mana_potion 2",
+	recipe = {
+		{"", "magic:mana_crystal", ""},
+		{"default:glass", "default:mese_crystal_fragment", "default:glass"},
+		{"", "default:glass", ""},
+	},
+})
+
+-- Greater Mana Potion: mana potion + mana crystal
+minetest.register_craft({
+	output = "magic:mana_potion_greater",
+	recipe = {
+		{"magic:mana_crystal"},
+		{"magic:mana_potion"},
+		{"magic:mana_crystal"},
+	},
+})
+
+-- Mana Regen Potion: mana potion + gold (catalyst)
+minetest.register_craft({
+	output = "magic:mana_potion_regen",
+	recipe = {
+		{"", "default:gold_ingot", ""},
+		{"magic:mana_crystal", "magic:mana_potion", "magic:mana_crystal"},
+		{"", "default:gold_ingot", ""},
+	},
+})
+
+----------------------------------------------------------------------
+-- Mana Armor
+----------------------------------------------------------------------
+
+-- Mana Helmet: steel helmet shape + mana crystals
+minetest.register_craft({
+	output = "magic:mana_helmet",
+	recipe = {
+		{"magic:mana_crystal", "default:steel_ingot", "magic:mana_crystal"},
+		{"default:steel_ingot", "", "default:steel_ingot"},
+	},
+})
+
+-- Mana Chestplate: steel chestplate shape + mana crystals
+minetest.register_craft({
+	output = "magic:mana_chestplate",
+	recipe = {
+		{"default:steel_ingot", "magic:mana_crystal", "default:steel_ingot"},
+		{"default:steel_ingot", "magic:mana_crystal", "default:steel_ingot"},
+		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
+	},
+})
+
+-- Mana Leggings: steel leggings shape + mana crystals
+minetest.register_craft({
+	output = "magic:mana_leggings",
+	recipe = {
+		{"default:steel_ingot", "magic:mana_crystal", "default:steel_ingot"},
+		{"default:steel_ingot", "", "default:steel_ingot"},
+		{"default:steel_ingot", "", "default:steel_ingot"},
+	},
+})
+
+-- Mana Boots: steel + mana crystals
+minetest.register_craft({
+	output = "magic:mana_boots",
+	recipe = {
+		{"default:steel_ingot", "", "default:steel_ingot"},
+		{"magic:mana_crystal", "", "magic:mana_crystal"},
+	},
+})

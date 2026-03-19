@@ -19,6 +19,8 @@ Minetest-Magic-Mod/
 ├── mana.lua          # Mana system: pool, regen, HUD bar, consume/add API
 ├── wands.lua         # Four magic wands: fire, ice, lightning, healing
 ├── enchanting.lua    # Enchanting table node, enchantment effects, mana crystal item
+├── potions.lua       # Mana potions: instant restore, full restore, regen buff
+├── armor.lua         # Mana armor set: helmet, chestplate, leggings, boots
 ├── crafting.lua      # All crafting recipes
 ├── mod.conf          # Mod metadata (name, description, depends)
 ├── .gitignore        # Lua build artifacts
@@ -43,6 +45,7 @@ Entry point. Creates the global `magic` namespace table and loads all modules vi
 
 ### `mana.lua`
 - Player mana pool (default 100, regenerates at 1/sec)
+- Max mana and regen rate dynamically adjusted by armor bonuses and potion buffs
 - HUD bar displayed below health/hunger
 - API: `magic.mana.get()`, `.consume()`, `.add()`, `.set()`, `.get_max()`
 
@@ -62,8 +65,25 @@ All wands use raycast targeting and have durability (wear).
 - **Mana Crystal** (`magic:mana_crystal`) — crafting ingredient
 - Effects applied via `register_on_punchplayer`
 
+### `potions.lua`
+Three consumable mana potions:
+- **Mana Potion** (`magic:mana_potion`) — restores 50 mana instantly
+- **Greater Mana Potion** (`magic:mana_potion_greater`) — fully restores mana
+- **Mana Regen Potion** (`magic:mana_potion_regen`) — doubles regen for 30 seconds
+
+Exposes `magic.potions.has_regen_buff()` for the mana system.
+
+### `armor.lua`
+Four mana armor pieces that boost max mana and regen when equipped (use item to toggle):
+- **Mana Helmet** — +20 max mana, +1 regen/sec
+- **Mana Chestplate** — +40 max mana, +2 regen/sec
+- **Mana Leggings** — +25 max mana, +1 regen/sec
+- **Mana Boots** — +15 max mana, +1 regen/sec
+
+Full set bonus: +100 max mana, +5 regen/sec. Exposes `magic.armor` API.
+
 ### `crafting.lua`
-Recipes for mana crystals, all four wands, and the enchanting table. Uses materials from the `default` mod.
+Recipes for mana crystals, wands, enchanting table, potions, and armor. Uses materials from the `default` mod.
 
 ## Development Conventions
 
